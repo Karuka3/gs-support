@@ -11,6 +11,8 @@ flask-sqlalchemy = "*"
 pysqlite3 = "*"
 flask-login = "*"
 flask-migrate = "*"
+flask-wtf = "*"
+flask-bcrypt = "*"
 
 [dev-packages]
 pylint = "*"
