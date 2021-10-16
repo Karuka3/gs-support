@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}SR View{% endblock %}
+
+{% block content %}
+<h1>{{ name }} SR View</h1>
+<table>
+    <thread>
+        <tr>
+            <th>#</th>
+            <th class=sr>SR Number</th>
+        </tr>
+    </thread>
+    <tbody>
+        {% for i in lists %}
+        <tr>
+            <td class=sr>{{ i[0] }}</td>
+            <td>
+                <a class=sr href="{{ url_for('sr_page', sr_id='')}}{{ i[1] }}">SR#{{ i[1] }}</a>
+            </td>
+            <td class=sr></td>
+        </tr>
+        {% else %}
+        <td>None</td>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
