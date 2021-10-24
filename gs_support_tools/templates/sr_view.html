@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/sr_view.css') }}">
+{% endblock %}
+
+{% block title %}SR View{% endblock %}
+
+{% block content %}
+<h1>{{ name }} SR View</h1>
+<table class="sr-table">
+    <thread>
+        <tr>
+            <th class="id">#</th>
+            <th class="sr-number">SR Number</th>
+            <th class="subject">Subject</th>
+            <th class="status">Status</th>
+            <th class="substatus">Substatus</th>
+            <th class="idel">Idel</th>
+            <th class="ping">Ping</th>
+            <th class="next-ping">Next Ping</th>
+        </tr>
+    </thread>
+    <tbody>
+        {% for sr in lists %}
+        <tr>
+            <td class="id">{{ sr.id }}</td>
+            <td class="sr-number">
+                <a href="{{ url_for('sr_page', sr_id=sr.number)}}">
+                    SR#{{ sr.number }}
+                </a>
+            </td>
+            <td class="subject">{{ sr.subject }}</td>
+            <td class="status">{{ sr.status }}</td>
+            <td class="substatus">{{ sr.substatus }}</td>
+            <td class="idle">{{ sr.idle }}</td>
+            <td class="ping"><label class="ping-date"><input type="date" name=ping_date class="pingdate"
+                        min="{{min_date}}" /></label></td>
+            <td class="next-ping"><label class="ping-date"><input type="date" name=ping_date class="pingdate"
+                        min="{{min_date}}" /></label></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/sr_view.js') }}"></script>
+{% endblock %}
