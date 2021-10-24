@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for, redirect, request, Blueprint, session, flash, abort
-from flask_login import login_user, logout_user, login_required, LoginManager, UserMixin, current_user
+from flask import render_template, url_for, redirect, request, Blueprint, session, abort
+from flask_login import login_user, logout_user, login_required, LoginManager, current_user
 from . import login_manager, bcrypt, db
 from .forms import RegistrationForm, LoginForm
 from .models import User
@@ -27,10 +27,8 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not bcrypt.check_password_hash(user.password, form.password.data):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
+            return redirect(url_for('auth.login'))
         login_user(user, form.remember.data)
-        flash('You have been logged in!', 'success')
         return redirect(request.args.get("next") or url_for('index'))
     return render_template('login.html', form=form)
 
@@ -54,6 +52,5 @@ def register():
         user = User(username=form.username.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash(f'Account created for {form.username.data}!', 'Success')
         return redirect(url_for('auth.login'))
     return render_template('register.html', form=form)
