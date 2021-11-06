@@ -1,3 +1,35 @@
 {% extends 'base.html' %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/template.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.longpress.js') }}"></script>
+{% endblock %}
+
 {% block title %}Template{% endblock %}
+
+{% block content %}
+<main>
+    <form name="f" method="post">
+        <div class="text_area"><textarea type="text" name="add_text" id="add_text"></textarea></div>
+        <div class="template">
+            {% for template in templates %}
+            <ul class="card">
+                <div class="txt" id="template_{{template.id}}" template_id="{{template.id}}">{{ template.text }}</div>
+                <div class="edit" id="edit_txt_{{template.id}}">
+                    <textarea type="text" class="txt_edit" name="edit_txt"
+                        template_id="{{ template.id }}">{{ template.text }}</textarea>
+                </div>
+            </ul>
+            <textarea class="id" name="id" id="id"></textarea>
+            <textarea name="text" id="text"></textarea>
+            {% endfor %}
+        </div>
+    </form>
+</main>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/template.js') }}"></script>
+
+
+
+{% endblock %}
