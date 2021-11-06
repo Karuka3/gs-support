@@ -25,6 +25,13 @@ class SR_lists(db.Model):
     idle = db.Column(db.Float)
 
 
+class Template(db.Model):
+    __tablename__ = 'template'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer)
+    text = db.Column(db.Text())
+
+
 db.create_all()
 # Test SR_lists
 
