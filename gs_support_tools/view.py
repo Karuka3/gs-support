@@ -2,10 +2,12 @@ from flask import Flask, render_template, redirect, url_for
 from flask_login import login_required
 from . import app
 from .auth import auth_api
+from .template import template_api
 from .models import SR_lists
 from datetime import datetime, timedelta
 
 app.register_blueprint(auth_api)
+app.register_blueprint(template_api)
 
 
 @app.route('/')
@@ -28,10 +30,12 @@ def sr_page(sr_id):
     return render_template('sr_page.html', id=sr_id)
 
 
+'''
 @app.route('/template')
-@login_required
+# @login_required
 def template():
     return render_template('template.html')
+'''
 
 
 @app.route('/redirects')
