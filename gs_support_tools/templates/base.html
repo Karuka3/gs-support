@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/style.css') }}">
-    {% block css %}
+    {% block css %}{% endblock %}
 
-    {% endblock %}
-
-    <title>{% block title %}Global Support Tool{% endblock %}</title>
+    <title>{% block title %}Global Support{% endblock %}</title>
 </head>
 
 <body>
@@ -19,7 +17,7 @@
         <ul class="navbar-nav">
             <li class="nav-item-active">
                 <a class="nav-link" href="{{ url_for('view')}}"> SR view </a>
-                <a class="nav-link" href="/template"> Template </a>
+                <a class="nav-link" href="{{ url_for('template.list')}}"> Template </a>
                 <a class="nav-link" href="#"> Problem List </a>
             </li>
         </ul>
